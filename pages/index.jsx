@@ -9,14 +9,28 @@ export default function HomePage(props) {
   console.log(products);
 
   return (
-    <ul>
-      {products.map((product) => (
-        <Link href={`/product/${product.id}`}>
-          {' '}
-          <li key={product.id}>{product.title}</li>
-        </Link>
-      ))}
-    </ul>
+    <>
+      <div>
+        <h2>Tshirts</h2>
+        <ul>
+          {tshirts.map((product) => (
+            <Link href={`/product/${product.id}`}>
+              <li key={product.id}>{product.title}</li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2>Sneakers</h2>
+        <ul>
+          {sneakers.map((product) => (
+            <Link href={`/product/${product.id}`}>
+              <li key={product.id}>{product.title}</li>
+            </Link>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }
 
