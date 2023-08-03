@@ -1,4 +1,5 @@
 import fs from 'fs/promises';
+import Link from 'next/link';
 import path from 'path';
 
 export default function HomePage(props) {
@@ -7,12 +8,16 @@ export default function HomePage(props) {
   return (
     <ul>
       {products.map((product) => (
-        <li key={product.id}>{product.title}</li>
+        <Link href={`/product/${product.id}`}>
+          {' '}
+          <li key={product.id}>{product.title}</li>
+        </Link>
       ))}
     </ul>
   );
 }
 
+//Get static props is used to prepare data to be served on the server side render - It runs before the component is rendered
 export async function getStaticProps(context) {
   console.log('getStaticProps context', context);
   console.log('regenerating');
