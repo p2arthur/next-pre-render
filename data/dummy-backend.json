@@ -1,7 +1,12 @@
 {
-  "products": [
-    { "id": "p1", "title": "Product 1", "description": "This is product 1" },
-    { "id": "p2", "title": "Product 2", "description": "This is product 2" },
-    { "id": "p3", "title": "Product 3", "description": "This is product 3" }
+  "tshirts": [
+    { "id": "t1", "title": "Tshirt 1", "description": "This is Tshirt 1" },
+    { "id": "t2", "title": "Tshirt 2", "description": "This is Tshirt 2" },
+    { "id": "t3", "title": "Tshirt 3", "description": "This is Tshirt 3" }
+  ],
+  "sneakers": [
+    { "id": "s1", "title": "Sneaker 1", "description": "This is Sneaker 1" },
+    { "id": "s2", "title": "Sneaker 2", "description": "This is Sneaker 2" },
+    { "id": "s3", "title": "Sneaker 3", "description": "This is Sneaker 3" }
   ]
 }

@@ -22,9 +22,12 @@ export default ProductDetailPage;
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { productId: 'p1' } },
-      { params: { productId: 'p2' } },
-      { params: { productId: 'p3' } },
+      { params: { productId: 't1' } },
+      { params: { productId: 't2' } },
+      { params: { productId: 't3' } },
+      { params: { productId: 's1' } },
+      { params: { productId: 's2' } },
+      { params: { productId: 's3' } },
     ],
     fallback: false,
   };
@@ -35,10 +38,13 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const filePath = path.join(process.cwd(), 'data', 'dummy-backend.json');
   const jsonData = await fs.readFile(filePath);
-  const { products } = JSON.parse(jsonData);
+  const { tshirts, sneakers } = JSON.parse(jsonData);
+  console.log('products', tshirts, sneakers);
+
+  const allProducts = [...tshirts, ...sneakers];
   const { params } = context;
   const { productId } = params;
-  const product = products.find((product) => product.id === productId);
+  const product = allProducts.find((product) => product.id === productId);
 
   if (!product) {
     return { redirect: { destination: '/productNotFound' } };
