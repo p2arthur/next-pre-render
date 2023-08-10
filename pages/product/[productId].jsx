@@ -32,21 +32,23 @@ const getData = async () => {
 
 //The goal of this function is to tell NextJs what instances of this page should be pre-generated
 export async function getStaticPaths() {
-  const { tshirts, sneakers } = getData();
+  const data = await getData();
 
-  if (tshirts && sneakers) {
-    const data = [tshirts, sneakers];
-    const ids = data.map((product) => product.id);
-  }
+  const { tshirts, sneakers } = data;
+
+  const allProducts = [...tshirts, ...sneakers];
+  const ids = allProducts.map((product) => product.id);
+
+  const pathsWithParams = ids.map((id) => {
+    return {
+      params: {
+        productId: id,
+      },
+    };
+  });
 
   return {
-    paths: [
-      { params: { productId: 't1' } },
-      { params: { productId: 't2' } },
-      { params: { productId: 't3' } },
-      { params: { productId: 's2' } },
-      { params: { productId: 's3' } },
-    ],
+    paths: pathsWithParams,
 
     //Fallback is used to tell nextJs that any other productId is possible but those that are not listed are not rendered on the server but just in time as the request to that specific page reaches the server - s1 is missing above
     fallback: 'blocking',
