@@ -51,7 +51,7 @@ export async function getStaticPaths() {
     paths: pathsWithParams,
 
     //Fallback is used to tell nextJs that any other productId is possible but those that are not listed are not rendered on the server but just in time as the request to that specific page reaches the server - s1 is missing above
-    fallback: 'blocking',
+    fallback: true,
   };
 }
 
@@ -59,8 +59,6 @@ export async function getStaticPaths() {
 //--------------------------------------------------------------------------
 export async function getStaticProps(context) {
   const data = await getData();
-
-  console.log('DATA', data);
 
   const { tshirts, sneakers } = data;
 
@@ -72,7 +70,7 @@ export async function getStaticProps(context) {
   const product = allProducts.find((product) => product?.id === productId);
 
   if (!product) {
-    return { redirect: { destination: '/productNotFound' } };
+    return { notFound: true };
   }
 
   return { props: { loadedProduct: product } };
