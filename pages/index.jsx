@@ -44,7 +44,7 @@ export async function getStaticProps(context) {
     return { redirect: { detination: '/no-data' } };
   }
 
-  if (tshirts.length === 0) {
+  if (tshirts.length === 0 || sneakers.length === 0) {
     return { notFound: true };
   }
 
